@@ -13,6 +13,10 @@ redis_data/
 # Backup files
 *.backup
 *.bak
+*.tar
+*.tar.gz
+*.tgz
+sub2api-local-*.png
 
 # Temporary files
 *.tmp

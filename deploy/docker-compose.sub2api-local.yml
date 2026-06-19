@@ -1,0 +1,12 @@
+services:
+  sub2api:
+    image: sub2api-local:linux-amd64
+    container_name: sub2api_local
+    extra_hosts:
+      - "raw.githubusercontent.com:198.18.0.205"
+
+  postgres:
+    container_name: sub2api_postgres_local
+
+  redis:
+    container_name: sub2api_redis_local
