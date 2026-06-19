@@ -427,8 +427,9 @@ const isSystemIdle = computed(() => {
   const ov = overview.value
   if (!ov) return true
   const qps = ov.qps?.current
+  const tps = ov.tps?.current
   const errorRate = ov.error_rate ?? 0
-  return (qps ?? 0) === 0 && errorRate === 0
+  return (qps ?? 0) === 0 && (tps ?? 0) === 0 && errorRate === 0
 })
 
 const healthScoreValue = computed<number | null>(() => {

@@ -8,6 +8,10 @@
 #   http://sub2api:8080
 services:
   sub2api:
+    image: ly-scnu/sub2api:custom
+    build:
+      context: ..
+      dockerfile: Dockerfile
     networks:
       - sub2api-network
       - new-api-network
