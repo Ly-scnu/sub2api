@@ -426,10 +426,19 @@ const ttftMaxMs = computed(() => overview.value?.ttft?.max_ms ?? null)
 const isSystemIdle = computed(() => {
   const ov = overview.value
   if (!ov) return true
-  const qps = ov.qps?.current
+  const hasTraffic =
+    (ov.request_count_total ?? 0) > 0 ||
+    (ov.token_consumed ?? 0) > 0 ||
+    (ov.qps?.current ?? 0) > 0 ||
+    (ov.qps?.peak ?? 0) > 0 ||
+    (ov.qps?.avg ?? 0) > 0 ||
+    (ov.tps?.current ?? 0) > 0 ||
+    (ov.tps?.peak ?? 0) > 0 ||
+    (ov.tps?.avg ?? 0) > 0
+  if (hasTraffic) return false
   const tps = ov.tps?.current
   const errorRate = ov.error_rate ?? 0
-  return (qps ?? 0) === 0 && (tps ?? 0) === 0 && errorRate === 0
+  return (tps ?? 0) === 0 && errorRate === 0
 })
 
 const healthScoreValue = computed<number | null>(() => {
