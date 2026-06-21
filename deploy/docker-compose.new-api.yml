@@ -1,0 +1,22 @@
+# Compose override for running Sub2API beside the New API deployment.
+#
+# Usage:
+#   docker compose -f docker-compose.local.yml -f docker-compose.new-api.yml up -d
+#
+# The New API stack creates the external Docker network below. Attaching the
+# Sub2API app container to it lets New API reach the gateway at:
+#   http://sub2api:8080
+services:
+  sub2api:
+    image: ly-scnu/sub2api:custom
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    networks:
+      - sub2api-network
+      - new-api-network
+
+networks:
+  new-api-network:
+    external: true
+    name: new_api_new-api-network
